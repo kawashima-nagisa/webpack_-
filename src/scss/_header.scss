@@ -1,0 +1,378 @@
+@use "common" as *;
+p {
+	color: yellow;
+	background-color: blue;
+	width: 100%;
+	height: 500px;
+	background: url("@image/thumb.webp") center/cover;
+}
+// body {
+// 	width: 100%;
+// 	height: 100vh;
+// 	height: calc(var(--vh, 1vh) * 100);
+// }
+// .header {
+// 	background-color: var(--color-blue);
+// 	position: fixed;
+// 	top: 0;
+// 	left: 0;
+// 	z-index: 10;
+// 	// 取り合えすz-indexの指定しておく
+// 	width: 100%;
+// 	height: 93px;
+// 	&__contents {
+// 		height: 100%;
+// 		position: relative;
+// 	}
+// 	&__container {
+// 		display: flex;
+// 		justify-content: center;
+// 		align-items: center;
+// 		height: 100%;
+// 		h1 {
+// 			color: var(--color-white);
+// 			text-align: center;
+// 			font-family: $font-Noto;
+// 			// font-size: 28px;
+// 			font-style: normal;
+// 			font-weight: 700;
+// 			line-height: 120%; /* 33.6px */
+// 			font-size: clamp(1.375rem, 0.3966rem + 1.5038vw, 1.75rem);
+// 		}
+// 	}
+// 	&__button {
+// 		cursor: pointer;
+// 		position: absolute;
+// 		top: 20%;
+// 		right: 2%;
+// 		color: var(--color-blue);
+// 		text-align: center;
+// 		font-family: $font-Noto;
+// 		font-size: 24px;
+// 		font-style: normal;
+// 		font-weight: 700;
+// 		line-height: normal;
+// 		letter-spacing: -0.36px;
+// 		display: inline-block;
+// 		border-radius: 10px;
+// 		background: var(--color-white);
+// 		// padding: 20px;
+// 		min-height: 58px;
+// 		display: flex;
+// 		align-items: center;
+// 		padding: 0px 20px;
+// 	}
+// }
+// // ここよりハンハーガー用のheaderの制作
+
+// .header {
+// 	@include mq(tab-humburger) {
+// 		display: none;
+// 	}
+// }
+// .sp-header {
+// 	display: none;
+// 	//レスポンシブで指定する範囲で現れて欲しいので、それ以外の場合は消す
+// 	@include mq(tab-humburger) {
+// 		background-color: var(--color-blue);
+// 		display: block;
+// 		height: 100px;
+// 		z-index: 999;
+// 		padding-left: 5.333vw;
+// 		position: fixed;
+// 		top: 0;
+// 		width: 100%;
+// 		display: flex;
+// 		justify-content: space-between;
+// 		align-items: center;
+// 		transition: padding 0.5s, background-color 0.5s; //追記;
+// 	}
+// 	@include mq(sp) {
+// 		height: 60px;
+// 	}
+
+// 	&.transform {
+// 		@include mq(sp) {
+// 			background-color: #001c4a; //追記;
+// 		}
+// 	}
+// }
+
+// .sp-menu {
+// 	display: none;
+// 	@include mq(tab-humburger) {
+// 		display: block;
+// 		opacity: 0;
+// 		pointer-events: none;
+// 		transition: all 0.7s ease;
+// 		padding-top: 16vw;
+// 		// header分空ける
+// 		position: fixed;
+// 		left: 0;
+// 		top: 0;
+// 		width: 100%;
+// 		height: 100%;
+// 		z-index: 100;
+// 		// height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+// 		// height: calc(var(--vh, 1vh) * 100);
+
+// 		// background: var(--color-blue) url(../images/footer-background-sp.png)
+// 		// no-repeat bottom/contain;
+// 	}
+// 	&.close {
+// 		display: block;
+// 		pointer-events: auto;
+// 		opacity: 1;
+// 		overflow-y: scroll;
+// 	}
+// 	&__container {
+// 		padding-top: 77px;
+// 		padding-bottom: 205px;
+// 	}
+// 	&__nav {
+// 		margin-bottom: 50px;
+// 		.nav__main {
+// 			display: flex;
+// 			flex-direction: column;
+// 			gap: 28px;
+// 			li {
+// 				display: flex;
+// 				flex-direction: column;
+// 				text-align: center;
+// 				a {
+// 					color: var(--color-white);
+// 					font-feature-settings: "clig" off, "liga" off;
+// 					font-family: $font-Noto;
+// 					font-size: 5.333vw;
+// 					font-style: normal;
+// 					font-weight: 700;
+// 					line-height: 160%; /* 32px */
+// 				}
+// 			}
+// 			&-list {
+// 				// margin-top: 6.667vw;
+// 			}
+// 			.en {
+// 				font-family: "Raleway", sans-serif;
+// 				font-style: normal;
+// 				font-weight: 400;
+// 				font-size: 18px;
+// 				line-height: 116.66%;
+// 				text-align: center;
+// 				letter-spacing: 0.1em;
+// 				color: #ffffff;
+// 			}
+// 			.ja {
+// 				font-family: "Zen Kaku Gothic New", sans-serif;
+// 				font-style: normal;
+// 				font-weight: 400;
+// 				font-size: 11px;
+// 				line-height: 145.45%;
+// 				text-align: center;
+// 				letter-spacing: 0.1em;
+// 				color: #ffffff;
+// 				margin-top: 6px;
+// 				margin-top: 0.781vw;
+// 			}
+// 		}
+// 	}
+// 	&__message {
+// 		display: flex;
+// 		flex-direction: column;
+// 		align-items: center;
+// 		margin-bottom: 30px;
+// 		p {
+// 			color: var(--color-white);
+// 			font-size: 4.267vw;
+// 			font-style: normal;
+// 			font-weight: 500;
+// 			line-height: 160%; /* 25.6px */
+// 			letter-spacing: 0.213vw;
+// 		}
+// 		.tel {
+// 			a {
+// 				color: var(--color-white);
+// 				font-family: $font-Noto;
+// 				font-size: 30px;
+// 				font-style: normal;
+// 				font-weight: 700;
+// 				line-height: 160%; /* 48px */
+// 			}
+// 		}
+// 		.time {
+// 			color: var(--color-white);
+// 			font-family: $font-Noto;
+// 			font-size: 5.333vw;
+// 			font-weight: 400;
+// 		}
+// 	}
+// 	&__contact-button {
+// 		display: block;
+// 		border-radius: 13.333vw;
+// 		background: var(--color-white);
+
+// 		margin-inline: auto;
+// 		min-height: 11.467vw;
+// 		max-width: 65.867vw;
+// 		display: flex;
+// 		justify-content: center;
+// 		align-items: center;
+// 		color: var(--color-blue);
+// 		font-family: $font-Noto;
+// 		font-size: 4.267vw;
+// 		font-style: normal;
+// 		font-weight: 400;
+// 		line-height: 160%;
+// 		letter-spacing: 0.085vw;
+// 		span {
+// 			font-size: 4.8vw;
+// 			font-weight: 700;
+// 			letter-spacing: 0.096vw;
+// 		}
+// 	}
+// }
+// .sp-header__logo {
+// 	// @include mq(tab-humburger) {
+// 	// 	width: 181px;
+// 	// }
+// 	width: min(36.8%, 179px);
+
+// 	img {
+// 		aspect-ratio: 138/30;
+// 		vertical-align: text-top;
+// 		@include mq(tab-humburger) {
+// 			max-width: 205px;
+// 		}
+// 		@include mq(sp) {
+// 			max-width: 138px;
+// 		}
+// 	}
+// }
+// .sp-header__humburger-sns {
+// 	display: flex;
+// 	align-items: center;
+// }
+// .sp-header__sns {
+// 	display: flex;
+// 	align-items: center;
+// 	a {
+// 		margin-right: 8vw;
+// 		img {
+// 			@include mq(tab-humburger) {
+// 				width: 53px;
+// 			}
+// 			@include mq(sp) {
+// 				width: 25px;
+// 			}
+// 		}
+// 	}
+// }
+// .humburger__container {
+// 	padding: 16px 0px;
+// 	@include mq(tab-humburger) {
+// 		padding: 0;
+// 	}
+// }
+// .humburger__bars {
+// 	.humburger__bar {
+// 		display: block;
+// 		width: 100%;
+// 		height: 0.267vw;
+// 		background-color: #fff;
+// 		position: relative;
+// 		transition: ease 0.4s;
+// 		@include mq(tab-humburger) {
+// 			width: 55px;
+// 			height: 2px;
+// 		}
+// 		@include mq(sp) {
+// 			width: 30px;
+// 		}
+// 		&:nth-child(2) {
+// 			//真ん中だけ余白をつけて3点アイコン作る
+// 			@include mq(tab-humburger) {
+// 				margin: 16px 0px;
+// 			}
+// 			@include mq(sp) {
+// 				margin: 9px 0px;
+// 			}
+// 		}
+// 	}
+// }
+// .humburgers__title {
+// 	font-family: "Raleway";
+// 	font-style: normal;
+// 	font-weight: 400;
+// 	letter-spacing: 0.1em;
+// 	color: #fff;
+// 	@include mq(tab-humburger) {
+// 		font-size: 18px;
+// 		margin-top: 8.7px;
+// 	}
+// 	@include mq(sp) {
+// 		font-size: 10px;
+// 	}
+// }
+// .humburgers__title-close {
+// 	display: none;
+// }
+// .sp-header__humburger {
+// 	// background: #c1a477;
+// 	display: flex;
+// 	justify-content: center;
+// 	align-items: center;
+// 	cursor: pointer;
+// 	@include mq(tab-humburger) {
+// 		width: 100px;
+// 		height: 100px;
+// 	}
+// 	@include mq(sp) {
+// 		width: 60px;
+// 		height: 60px;
+// 	}
+// 	&.close {
+// 		//以下がばつ印スタイル
+// 		.humburger__bar {
+// 			&:nth-child(1) {
+// 				// top: 1.3333vw;
+// 				transform: rotate(45deg);
+// 				@include mq(tab-humburger) {
+// 					top: 22px;
+// 				}
+// 				@include mq(sp) {
+// 					top: 12px;
+// 				}
+// 			}
+// 			&:nth-child(2) {
+// 				opacity: 0;
+// 			}
+// 			&:nth-child(3) {
+// 				transform: rotate(-45deg);
+// 				@include mq(tab-humburger) {
+// 					top: -14px;
+// 				}
+// 				@include mq(sp) {
+// 					top: -10px;
+// 				}
+// 			}
+// 		}
+// 		.humburgers__title {
+// 			display: none;
+// 		}
+// 		.humburgers__title-close {
+// 			display: block;
+// 			font-family: "Raleway";
+// 			font-style: normal;
+// 			font-weight: 400;
+// 			letter-spacing: 0.1em;
+// 			color: #fff;
+// 			margin-top: 8.7px;
+// 			@include mq(tab-humburger) {
+// 				font-size: 19px;
+// 			}
+// 			@include mq(sp) {
+// 				font-size: 10px;
+// 			}
+// 		}
+// 	}
+// }

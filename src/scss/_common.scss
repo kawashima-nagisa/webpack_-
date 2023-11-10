@@ -1,0 +1,550 @@
+$breakpoints: (
+	sm: "screen and (300px <= width < 601px)",
+	sp: "screen and (width <= 768px)",
+	md: "screen and (width <= 1270px)",
+	//768px以下のとき 右側の固定の場合はこれが当てはまる
+	price-sp: "screen and (769px <= width < 1001px)",
+	tab-humburger: "screen and (width <= 1040px)",
+	//1040px以下の時ハンバーガーメニューの作成のため
+	tab: "screen and (1041px <= width < 1920px)",
+	// 1041px以上の時　ドロップダウンの作成のため
+);
+
+@mixin mq($breakpoint) {
+	@media #{map-get($breakpoints, $breakpoint)} {
+		@content;
+	}
+}
+
+// リセットcssの始まり
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video,
+a,
+b {
+	margin: 0;
+	// padding: 0;
+	// font-size: 100%;
+	// line-height: 100%;
+	// list-style-type: none;
+	// vertical-align: baseline;
+	// text-decoration: none;
+	box-sizing: border-box;
+	padding: 0;
+
+	// font-size: initial;
+	// line-height: initial;
+	// list-style-type: initial;
+	// text-decoration: initial;
+
+	// text-decoration: none;
+}
+// @font-faceS
+//   font-family: 'logob'
+//   src: url('../fonts/logotypejp_mp_b_1.1.ttf') format('OpenType')
+// @font-face
+//   font-family: 'logo'
+//   src: url('../fonts/logotypejp_mp_m_1.1.ttf') format('OpenType')
+
+// Elements
+html {
+	// font-size: 62.5%;
+
+	scroll-behavior: smooth;
+}
+body {
+	// font-size: 16px;
+	// font-family: "Inter", sans-serif, "Zen Maru Gothic", "FOT-TsukuARdGothic Std",
+	// 	"Noto Sans JP", sans-serif;
+	// width: 100%;
+	// height: 100vh;
+	// font-weight: 500;
+}
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+input,
+button {
+	&[type="submit"],
+	&[type="button"] {
+		border-radius: 0;
+		-webkit-box-sizing: content-box;
+		-webkit-appearance: button;
+		appearance: button;
+		border: none;
+		box-sizing: border-box;
+		cursor: pointer;
+	}
+	&[type="submit"]::-webkit-search-decoration,
+	&[type="button"]::-webkit-search-decoration {
+		display: none;
+	}
+	&[type="submit"]::focus,
+	&[type="button"]::focus {
+		outline-offset: -2px;
+	}
+}
+ul,
+li {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+}
+:root {
+	--color-white: #fff;
+	--color-blue: #00589b;
+	--color-light-blue: #e8f5ff;
+	--color-black: #202020;
+}
+
+@media screen and (min-width: 1201px) {
+	.tab {
+		display: none !important;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.sp {
+		display: none !important;
+	}
+}
+@media screen and (max-width: 767px) {
+	.pc {
+		display: none !important;
+	}
+}
+
+$breakpoints: (
+	sm: "screen and (300px <= width < 601px)",
+	sp: "screen and (width <= 768px)",
+	md: "screen and (width <= 1270px)",
+	//768px以下のとき 右側の固定の場合はこれが当てはまる
+	price-sp: "screen and (769px <= width < 1001px)",
+	tab-humburger: "screen and (width <= 1040px)",
+	//1040px以下の時ハンバーガーメニューの作成のため
+	tab: "screen and (1041px <= width < 1920px)",
+	// 1041px以上の時　ドロップダウンの作成のため
+);
+
+@mixin mq($breakpoint) {
+	@media #{map-get($breakpoints, $breakpoint)} {
+		@content;
+	}
+}
+
+$font-Noto: "Noto Sans JP", sans-serif;
+
+$webpClassName: ".is-webp";
+$noWebpClassName: ".is-no-webp";
+
+@mixin webpBg(
+	$selector,
+	$filePath,
+	$fileExtension: "png",
+	$mobilePath: null,
+	$mobileExtension: null
+) {
+	@if $filePath != "" and $fileExtension != "" {
+		#{$noWebpClassName} #{$selector} {
+			background: url(#{$filePath}.#{$fileExtension}) center/cover;
+		}
+		#{$webpClassName} #{$selector} {
+			background: url(#{$filePath}.webp) center/cover;
+		}
+	}
+
+	@if $mobilePath {
+		$mobileFileExtension: if(
+			$mobileExtension,
+			$mobileExtension,
+			$fileExtension
+		);
+		@media (max-width: 768px) {
+			#{$noWebpClassName} #{$selector} {
+				background: url(#{$mobilePath}.#{$mobileFileExtension}) center/cover;
+			}
+			#{$webpClassName} #{$selector} {
+				background: url(#{$mobilePath}.webp) center/cover;
+			}
+		}
+	}
+}
+
+// @include webpBg(
+// 	".question__consultation .consultation-right",
+// 	"",
+// 	"",
+// 	"../images/consultation-background-sp",
+// 	"png"
+// );
+// @include webpBg(
+// 	".question__consultation",
+// 	"../images/consultation-background",
+// 	"png"
+// );
+
+$colors: (
+	"red": #e97a6b,
+	"blue": #50a7c6,
+	"green": #5cb066,
+	"yellow": #dda649,
+);
+@each $color-name, $color-value in $colors {
+	.color-#{$color-name} {
+		background-color: $color-value;
+	}
+}
+
+//LPの共通部分は以下に書いていく
+// @mixin common-hukidashi {
+// 	.question__voice-contents {
+// 		width: max(56.7%, 567px);
+// 		margin-inline: auto;
+// 		display: flex;
+// 		flex-direction: column;
+// 		gap: 62px;
+// 		@include mq(sp) {
+// 			width: 100%;
+// 			gap: 5.333vw;
+// 		}
+// 		.content-item {
+// 			display: flex;
+// 			justify-content: space-between;
+// 			align-items: center;
+// 			@include mq(sp) {
+// 				justify-content: space-around;
+// 			}
+// 			&:nth-child(2) {
+// 				flex-direction: row-reverse;
+// 				p {
+// 					&::before {
+// 						transform: scaleX(-1);
+// 						left: 100%;
+// 					}
+// 				}
+// 			}
+// 			p {
+// 				color: var(--color-black);
+// 				font-family: $font-Noto;
+// 				font-size: 16px;
+// 				font-style: normal;
+// 				font-weight: 400;
+// 				line-height: 160%; /* 25.6px */
+// 				text-align-last: left;
+// 				// min-width: 414px;
+// 				padding: 30px;
+// 				border-radius: 10px;
+// 				border: 3px solid var(--color-blue);
+// 				box-shadow: 0px 12px 10px -6px rgba(0, 0, 0, 0.3);
+// 				position: relative;
+// 				background: var(--color-white);
+// 				@include mq(sp) {
+// 					border: 0.319vw solid var(--color-blue);
+// 					font-size: 4.267vw;
+// 				}
+// 				&::before {
+// 					content: "";
+// 					display: block;
+// 					// background-image: url(../images/yajirushi.svg);
+// 					width: 25px;
+// 					height: 20px;
+// 					display: block;
+// 					position: absolute;
+// 					top: 46%;
+// 					right: 100%;
+// 					@include mq(sp) {
+// 						width: 3.467vw;
+// 						// background-image: url(../images/yajirushi-sp.svg);
+// 					}
+// 				}
+// 			}
+// 			img {
+// 				aspect-ratio: 1/1;
+// 				max-width: 130px;
+// 				@include mq(sp) {
+// 					min-width: 21.333vw;
+// 				}
+// 			}
+// 		}
+// 	}
+// }
+// @mixin common-button {
+// 	a {
+// 		color: var(--color-blue);
+// 		font-family: $font-Noto;
+// 		font-size: 20px;
+// 		font-style: normal;
+// 		font-weight: 700;
+// 		// line-height: 180%; /* 36px */
+// 		letter-spacing: 1px;
+// 		// padding: 20px 0px;
+// 		background: var(--color-white);
+// 		border-radius: 60px;
+// 		display: block;
+// 		max-width: 365px;
+// 		margin-inline: auto;
+// 		min-height: 55px;
+// 		display: flex;
+// 		justify-content: center;
+// 		align-items: center;
+// 		@include mq(sp) {
+// 			font-size: 4.8vw;
+// 			min-height: 12.8vw;
+// 		}
+// 		span {
+// 			font-size: 18px;
+// 			font-weight: 400;
+// 			letter-spacing: 0.9px;
+// 			@include mq(sp) {
+// 				font-size: 4.8vw;
+// 				// line-height: 180%;
+// 				letter-spacing: 0.24vw;
+// 			}
+// 		}
+// 		&::after {
+// 			position: absolute;
+// 			content: "";
+// 			display: block;
+// 			background: url(../images/button-arrow.svg) center/cover;
+// 			width: 18px;
+// 			height: 17px;
+// 			right: 10%;
+// 			top: 50%;
+// 			transform: translateY(-50%);
+// 			@include mq(sp) {
+// 				right: 4%;
+// 				width: 4.533vw;
+// 				height: 4.267vw;
+// 			}
+// 		}
+// 	}
+// }
+// @mixin common-join {
+// 	.question__consultation {
+// 		padding: 80px 0px;
+// 		// background: url(../image/consultation-background.png) center/cover;
+// 		border-radius: 0px 0px 10px 10px;
+// 		@include mq(sp) {
+// 			width: max(111.607%, 375px);
+// 			transform: translateX(-5%);
+// 			padding: 0;
+// 			border-radius: initial;
+// 			background: initial;
+// 		}
+// 		&__container {
+// 			display: flex;
+// 			justify-content: space-between;
+// 			width: min(78.1%, 781px);
+// 			margin-inline: auto;
+// 			@include mq(sp) {
+// 				flex-direction: column-reverse;
+// 				width: 100%;
+// 			}
+// 		}
+// 		.consultation-left {
+// 			width: 38.92%;
+// 			@include mq(sp) {
+// 				width: 100%;
+// 				position: relative;
+// 			}
+// 			img {
+// 				@include mq(sp) {
+// 					aspect-ratio: 399/206;
+// 					vertical-align: bottom;
+// 					width: 100%;
+// 				}
+// 			}
+// 			p {
+// 				color: var(--color-white);
+// 				text-align: center;
+// 				font-family: $font-Noto;
+// 				font-size: 14px;
+// 				font-style: normal;
+// 				font-weight: 500;
+// 				line-height: 120%; /* 16.8px */
+// 				@include mq(sp) {
+// 					color: #fff;
+// 					font-size: 3.733vw;
+// 					position: absolute;
+// 					bottom: 10%;
+// 					left: 5%;
+// 				}
+// 			}
+// 		}
+// 		.consultation-right {
+// 			// width: 57.23%;
+// 			width: 58.23%;
+// 			text-align: center;
+// 			@include mq(sp) {
+// 				width: max(100%, 375px);
+// 				margin-inline: auto;
+// 				padding: 8vw 0px 9.333vw;
+// 			}
+// 			p {
+// 				color: var(--color-white);
+// 				font-family: $font-Noto;
+// 				font-size: 32px;
+// 				font-style: normal;
+// 				font-weight: 700;
+// 				line-height: 120%; /* 38.4px */
+// 				margin-bottom: 30px;
+// 				@include mq(sp) {
+// 					color: #fff;
+// 					font-size: 5.333vw;
+// 					line-height: 160%; /* 32px */
+// 					margin-bottom: 2.667vw;
+// 				}
+// 			}
+// 			span {
+// 				font-size: 16px;
+// 				font-style: normal;
+// 				font-weight: 700;
+// 				line-height: 180%; /* 28.8px */
+// 				letter-spacing: 0.8px;
+// 				@include mq(sp) {
+// 					font-size: 4.267vw;
+// 				}
+// 			}
+// 			div {
+// 				color: var(--color-white);
+// 				font-family: $font-Noto;
+// 				font-size: 16px;
+// 				font-style: normal;
+// 				font-weight: 400;
+// 				line-height: 180%; /* 28.8px */
+// 				letter-spacing: 0.8px;
+// 				margin-bottom: 15px;
+// 				@include mq(sp) {
+// 					font-size: 3.733vw;
+// 					margin-bottom: 4vw;
+// 				}
+// 			}
+// 			//button部分　後で共通部分にする
+// 			a {
+// 				color: var(--color-blue);
+// 				font-family: $font-Noto;
+// 				font-size: 20px;
+// 				font-style: normal;
+// 				font-weight: 700;
+// 				// line-height: 180%; /* 36px */
+// 				letter-spacing: 1px;
+// 				// padding: 20px 0px;
+// 				background: var(--color-white);
+// 				border-radius: 60px;
+// 				display: block;
+// 				max-width: 365px;
+// 				margin-inline: auto;
+// 				min-height: 55px;
+// 				display: flex;
+// 				justify-content: center;
+// 				align-items: center;
+// 				position: relative;
+// 				transition: all 0.7s ease;
+// 				@include mq(sp) {
+// 					font-size: 4.8vw;
+// 					min-height: 12.8vw;
+// 					// max-width: 100%;
+// 					width: max(85.5%, 320px);
+// 					max-width: 85.5%;
+// 					//ここ後でちゃんとmax関数に変更した方がいい
+// 				}
+// 				span {
+// 					font-size: 18px;
+// 					font-weight: 400;
+// 					letter-spacing: 0.9px;
+// 					@include mq(sp) {
+// 						font-size: 4.267vw;
+// 					}
+// 				}
+// 				&:hover {
+// 					background: transparent;
+// 					color: var(--color-white);
+// 					border: 1px solid var(--color-white);
+// 					&::after {
+// 						background: url("../images/button-arrow-white.svg") center/cover;
+// 					}
+// 				}
+// 				&::after {
+// 					position: absolute;
+// 					content: "";
+// 					display: block;
+// 					background: url("../images/button-arrow.svg") center/cover;
+// 					width: 18px;
+// 					height: 17px;
+// 					right: 6%;
+// 					top: 50%;
+// 					transform: translateY(-50%);
+// 					@include mq(sp) {
+// 						width: 4.533vw;
+// 						height: 4.267vw;
+// 					}
+// 				}
+// 			}
+// 		}
+// 	}
+
+// 	@container (max-width:689px) {
+// 		.question__consultation.fix-tab {
+// 			width: max(100%, 375px);
+// 		}
+// 	}
+// }
